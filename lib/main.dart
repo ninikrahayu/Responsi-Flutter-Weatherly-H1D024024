@@ -11,6 +11,7 @@ import 'viewmodels/weather_viewmodel.dart';
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await initializeDateFormatting('id_ID');
+
   SystemChrome.setSystemUIOverlayStyle(
     const SystemUiOverlayStyle(
       statusBarColor: Colors.transparent,
@@ -19,11 +20,15 @@ Future<void> main() async {
       systemNavigationBarIconBrightness: Brightness.dark,
     ),
   );
+
   runApp(
     MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (_) => WeatherViewModel()..initialize()),
-        ChangeNotifierProvider(create: (_) => LocationViewModel()),
+        ChangeNotifierProvider(
+          lazy: false,
+          create: (_) => LocationViewModel()..loadFavorites(),
+        ),
       ],
       child: const WeatherlyApp(),
     ),
@@ -32,6 +37,7 @@ Future<void> main() async {
 
 class WeatherlyApp extends StatelessWidget {
   const WeatherlyApp({super.key});
+
   @override
   Widget build(BuildContext context) => MaterialApp(
     title: 'Weatherly',

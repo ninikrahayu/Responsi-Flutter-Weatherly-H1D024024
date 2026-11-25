@@ -6,7 +6,15 @@ import '../themes/app_theme.dart';
 class LocationCard extends StatelessWidget {
   final LocationModel location;
   final VoidCallback onTap;
-  const LocationCard({super.key, required this.location, required this.onTap});
+  final VoidCallback? onFavoritePressed;
+  final bool isFavorite;
+  const LocationCard({
+    super.key,
+    required this.location,
+    required this.onTap,
+    required this.isFavorite,
+    this.onFavoritePressed,
+  });
   @override
   Widget build(BuildContext context) => Material(
     color: AppTheme.surface,
@@ -50,6 +58,8 @@ class LocationCard extends StatelessWidget {
                   const SizedBox(height: 4),
                   Text(
                     location.fullAddress,
+                    maxLines: 2,
+                    overflow: TextOverflow.ellipsis,
                     style: const TextStyle(
                       fontSize: 12,
                       color: AppTheme.textSecondary,
@@ -58,8 +68,25 @@ class LocationCard extends StatelessWidget {
                 ],
               ),
             ),
-            const SizedBox(width: 10),
-            const Icon(Icons.arrow_forward_rounded),
+            const SizedBox(width: 8),
+            IconButton(
+              tooltip: isFavorite
+                  ? 'Hapus dari favorit'
+                  : 'Tambahkan ke favorit',
+              onPressed: onFavoritePressed,
+              style: IconButton.styleFrom(
+                backgroundColor: isFavorite
+                    ? AppTheme.primaryLight
+                    : AppTheme.background,
+                foregroundColor: isFavorite
+                    ? AppTheme.primary
+                    : AppTheme.textPrimary,
+              ),
+              icon: Icon(
+                isFavorite ? Icons.star_rounded : Icons.star_border_rounded,
+                size: 26,
+              ),
+            ),
           ],
         ),
       ),
