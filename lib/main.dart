@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 import 'package:intl/date_symbol_data_local.dart';
 
+import 'viewmodels/location_viewmodel.dart';
 import 'themes/app_theme.dart';
 import 'views/main_screen.dart';
 import 'viewmodels/weather_viewmodel.dart';
@@ -22,6 +23,7 @@ Future<void> main() async {
     MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (_) => WeatherViewModel()..initialize()),
+        ChangeNotifierProvider(create: (_) => LocationViewModel()),
       ],
       child: const WeatherlyApp(),
     ),

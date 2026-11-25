@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
+import '../models/location_model.dart';
 import '../themes/app_theme.dart';
+import '../viewmodels/weather_viewmodel.dart';
 import 'weather_screen.dart';
 import 'search_screen.dart';
 
@@ -12,11 +15,19 @@ class MainScreen extends StatefulWidget {
 
 class _MainScreenState extends State<MainScreen> {
   int _selectedIndex = 0;
+  void _onLocationSelected(LocationModel location) {
+    context.read<WeatherViewModel>().selectLocation(location);
+    setState(() => _selectedIndex = 0);
+  }
+
   @override
   Widget build(BuildContext context) => Scaffold(
     body: IndexedStack(
       index: _selectedIndex,
-      children: const [WeatherScreen(), SearchScreen()],
+      children: [
+        const WeatherScreen(),
+        SearchScreen(onLocationSelected: _onLocationSelected),
+      ],
     ),
     bottomNavigationBar: Container(
       decoration: const BoxDecoration(
