@@ -100,19 +100,16 @@ SharedPreferences menyimpan daftar favorit dalam format JSON string dengan key f
 
 ### Home Weather
 
-<img src="screenshots/home.png" width="280">
+<img src="screenshots/home.jpeg" width="280">
 
 ### Search Location
 
-<img src="screenshots/search.png" width="280">
+<img src="screenshots/search.jpeg" width="280">
 
 ### Favorite Locations
 
-<img src="screenshots/favorites.png" width="280">
+<img src="screenshots/favorites.jpeg" width="280">
 
-### Error State
-
-<img src="screenshots/error.png" width="280">
 
 ## Instalasi
 
@@ -140,7 +137,7 @@ flutter build apk --release
 
 ## Video Demonstrasi
 
-Link video: URL_VIDEO
+Link video: https://youtu.be/WjHlhVaR7sw?si=YSBAlqKMMhPziDTQ
 
 ## Kesimpulan
 
